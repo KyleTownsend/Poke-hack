@@ -80,7 +80,7 @@ while True:
     break # Exit the loop by changing the while condition to false
 
 # Start leveling the character, then print the result
-for level in range(0, current_level):
+for level in range(1, current_level):
     level_up(current_stats)
 
 print_stats(current_stats)
