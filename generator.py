@@ -1,13 +1,32 @@
 import random 
-from itertools import repeat
+import itertools
 
-HP = random.randint(1,8) + 4 
-Power = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
-Speed = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
-Durability = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
-Precision = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
-Cunning = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
-Charisma = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
+
+#  Making dice rollers to make code cleaner
+
+def roll_d6(num):
+    dice_roll = 0
+    for num in itertools.repeat(None, num):
+        dice_roll += random.randint(1,6)
+    return dice_roll
+
+def roll_d8(num):
+    dice_roll = 0
+    for num in itertools.repeat(None, num):
+        dice_roll += random.randint(1,8)
+    return dice_roll
+
+def roll_d20():
+    return random.randint(1,20)
+
+
+HP = roll_d8(1) + 4 
+Power = roll_d6(3)
+Speed = roll_d6(3)
+Durability = roll_d6(3)
+Precision = roll_d6(3)
+Cunning = roll_d6(3)
+Charisma = roll_d6(3)
 
 
 print ('Your starting stats are...')
@@ -34,13 +53,13 @@ while True:
 
 while True:
     
-    random_eight_hp = random.randint(1,6) + 1 
-    random_twenty_power = random.randint(1,20)
-    random_twenty_speed = random.randint(1,20)
-    random_twenty_durability = random.randint(1,20)
-    random_twenty_precision = random.randint(1,20)
-    random_twenty_cunning = random.randint(1,20)
-    random_twentychr = random.randint(1,20)
+    random_eight_hp = roll_d6(1) + 1 
+    random_twenty_power = roll_d20()
+    random_twenty_speed = roll_d20()
+    random_twenty_durability = roll_d20()
+    random_twenty_precision = roll_d20()
+    random_twenty_cunning = roll_d20()
+    random_twentychr = roll_d20()
 
     if random_eight_hp > 0:
         HP += random_eight_hp
@@ -68,4 +87,17 @@ print ('Precision is ' + str(Precision))
 print ('Cunning is ' + str(Cunning))
 print ('Charisma is ' + str(Charisma))
     
+def roll_d6(num):
+    dice_roll = 0
+    for num in itertools.repeat(None, num):
+        dice_roll += random.randint(1,6)
+    return dice_roll
 
+def roll_d8(num):
+    dice_roll = 0
+    for num in itertools.repeat(None, num):
+        dice_roll += random.randint(1,8)
+    return dice_roll
+
+def roll_d20():
+    return random.randint(1,20)
