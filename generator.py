@@ -33,64 +33,56 @@ def create_stats():
     }
     return stat_block
 
+def print_stats(stat_block):
+    # This should be the same as above, but does not test
+    for key, value in stat_block.items():
+        print (key, value)
+
+def level_up(stats):
+    # HP is increased by 1d8+1 per level
+    HP_increase = roll_d8(1) + 1
+    stats["HP"] += HP_increase
+
+    # For each non-HP stat
+    # If value is less than 1d20, increase, otherwise don't
+    for stat_type, stat_value in stats.items():
+        if stat_type == "HP":
+            continue
+        increase_check = roll_d20()
+        if increase_check > stat_value:
+            stats[stat_type] += 1
+
+    return stats
+
+
 
 # Start creating a character...
 
 current_stats = create_stats()
 
 print ('Your starting stats are...')
+print_stats(current_stats)
 
-for key, value in current_stats.items():
-    print (key, value)
-
-
+# Ask for level-up info...
 while True:
     try:
-        Currentlevel=int(input('Please input your current level, from 1 to 10. \n'))
-        print ('Your new stats at level ' + str(Currentlevel) + ' are...')
+        current_level = int(input('Please input your current level, from 1 to 10. \n'))
+        print ('Your new stats at level ' + str(current_level) + ' are...')
     except ValueError:
         print("Hey! that's not a number")
         continue
     # made it past the exception, so input is a number
-    if Currentlevel <= 0 or Currentlevel >= 11:
+    if current_level <= 0 or current_level >= 11:
         print ('Need a number between 1 and 10')
         continue 
     break # Exit the loop by changing the while condition to false
 
-while True:
-    
-    random_eight_hp = roll_d8(1) + 1 
-    random_twenty_power = roll_d20()
-    random_twenty_speed = roll_d20()
-    random_twenty_durability = roll_d20()
-    random_twenty_precision = roll_d20()
-    random_twenty_cunning = roll_d20()
-    random_twentychr = roll_d20()
+# Start leveling the character, then print the result
+for level in range(0, current_level):
+    level_up(current_stats)
 
-    if random_eight_hp > 0:
-        HP += random_eight_hp
-    if random_twenty_power > Power:
-        Power += 1 
-    if random_twenty_speed > Speed:
-        Speed += 1 
-    if random_twenty_durability > Durability:
-        Durability+= 1
-    if random_twenty_precision  > Precision:
-        Precision += 1 
-    if random_twenty_cunning > Cunning:
-        Cunning += 1 
-    if random_twentychr > Charisma:
-        Charisma += 1
-    Currentlevel -= 1
-    if Currentlevel < 2:
-        break
+print_stats(current_stats)
     
-print ('HP is ' + str(HP))
-print ('Power is ' + str(Power))
-print ('Speed is ' + str(Speed))
-print ('Durability is ' + str(Durability))
-print ('Precision is ' + str(Precision))
-print ('Cunning is ' + str(Cunning))
-print ('Charisma is ' + str(Charisma))
+
     
 
