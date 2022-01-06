@@ -19,24 +19,30 @@ def roll_d8(num):
 def roll_d20():
     return random.randint(1,20)
 
+# Create a stat block, save into a dictionary 
 
-HP = roll_d8(1) + 4 
-Power = roll_d6(3)
-Speed = roll_d6(3)
-Durability = roll_d6(3)
-Precision = roll_d6(3)
-Cunning = roll_d6(3)
-Charisma = roll_d6(3)
+def create_stats():
+    stat_block = {
+        "HP": roll_d8(1) + 4, 
+        "Power": roll_d6(3),
+        "Speed": roll_d6(3),
+        "Durability": roll_d6(3),
+        "Precision": roll_d6(3),
+        "Cunning": roll_d6(3),
+        "Charisma": roll_d6(3)
+    }
+    return stat_block
 
+
+# Start creating a character...
+
+current_stats = create_stats()
 
 print ('Your starting stats are...')
-print ('HP is ' + str(HP))
-print ('Power is ' + str(Power))
-print ('Speed is ' + str(Speed))
-print ('Durability is ' + str(Durability))
-print ('Precision is ' + str(Precision))
-print ('Cunning is ' + str(Cunning))
-print ('Charisma is ' + str(Charisma))
+
+for key, value in current_stats.items():
+    print (key, value)
+
 
 while True:
     try:
@@ -53,7 +59,7 @@ while True:
 
 while True:
     
-    random_eight_hp = roll_d6(1) + 1 
+    random_eight_hp = roll_d8(1) + 1 
     random_twenty_power = roll_d20()
     random_twenty_speed = roll_d20()
     random_twenty_durability = roll_d20()
@@ -87,17 +93,4 @@ print ('Precision is ' + str(Precision))
 print ('Cunning is ' + str(Cunning))
 print ('Charisma is ' + str(Charisma))
     
-def roll_d6(num):
-    dice_roll = 0
-    for num in itertools.repeat(None, num):
-        dice_roll += random.randint(1,6)
-    return dice_roll
 
-def roll_d8(num):
-    dice_roll = 0
-    for num in itertools.repeat(None, num):
-        dice_roll += random.randint(1,8)
-    return dice_roll
-
-def roll_d20():
-    return random.randint(1,20)
