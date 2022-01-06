@@ -19,6 +19,7 @@ def roll_d8(num):
 def roll_d20():
     return random.randint(1,20)
 
+
 # Create a stat block, save into a dictionary 
 
 def create_stats():
@@ -64,6 +65,7 @@ print ('Your starting stats are...')
 print_stats(current_stats)
 
 # Ask for level-up info...
+# TODO: Maybe clean this up?
 while True:
     try:
         current_level = int(input('Please input your current level, from 1 to 10. \n'))
