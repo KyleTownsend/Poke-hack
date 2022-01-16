@@ -41,7 +41,7 @@ def print_stats(stat_block):
 
 def level_up(stats):
     # HP is increased by 1d8+1 per level
-    HP_increase = roll_d8(1) + 1
+    HP_increase = roll_d6(1) + 1
     stats["HP"] += HP_increase
 
     # For each non-HP stat
